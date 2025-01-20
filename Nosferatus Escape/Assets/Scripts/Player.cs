@@ -1,27 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     public float speed;
-    public int direction;
-    private Vector3 vectorMove;
+    public float forceJump;
+
+    private Rigidbody2D playerRigidbody2D;
+ 
     void Start()
     {
-        vectorMove = new Vector3(1, 0, 0);
+        playerRigidbody2D = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        MoveSideBySide();
+        PlayerControll();
     }
 
-    private void MoveSideBySide()
+    private void PlayerControll()
     {
-        direction = 0;
-        if(Input.GetKey(KeyCode.A)) direction = -1;
-        if(Input.GetKey(KeyCode.D)) direction =  1;
-        transform.position += Time.deltaTime * direction * speed * vectorMove;
+        if(Input.GetKey(KeyCode.A)) MoveSideBySide(-1);
+        if(Input.GetKey(KeyCode.D)) MoveSideBySide( 1);
+
+        if(Input.GetKeyDown(KeyCode.Space)) Jump();
     }
+
+    private void MoveSideBySide(int _direction)
+    {
+        transform.position += Time.deltaTime * _direction * speed * Vector3.right;
+    }
+
+    private void Jump()
+    {
+        playerRigidbody2D.velocity = Vector2.zero;
+        playerRigidbody2D.AddForce(Vector2.up * forceJump);
+    }
+
 }
