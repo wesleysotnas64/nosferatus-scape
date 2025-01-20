@@ -208,6 +208,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   forceJump: 200
+  inDash: 0
+  dashTime: 1
+  dashDistance: 3
+  direction: {x: 0, y: 0}
 --- !u!4 &218187688
 Transform:
   m_ObjectHideFlags: 0
