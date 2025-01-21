@@ -50,26 +50,29 @@ public class Player : MonoBehaviour
 
     private IEnumerator DashCoroutine()
     {
-        inDash = true;
-
-        playerRigidbody2D.gravityScale = 0;
-        playerRigidbody2D.velocity = Vector2.zero;
-
-        Vector2 initialPosition = transform.position;
-        Vector2 finalPosition = initialPosition + (dashDistance*direction);
-
-        float currentTime = 0.0f;
-        while(currentTime<dashTime)
+        if(!inDash)
         {
-            currentTime += Time.deltaTime;
-            transform.position = Vector2.Lerp(initialPosition, finalPosition, currentTime/dashTime);
-            yield return null;
+            inDash = true;
+
+            playerRigidbody2D.gravityScale = 0;
+            playerRigidbody2D.velocity = Vector2.zero;
+
+            Vector2 initialPosition = transform.position;
+            Vector2 finalPosition = initialPosition + (dashDistance*direction);
+
+            float currentTime = 0.0f;
+            while(currentTime<dashTime)
+            {
+                currentTime += Time.deltaTime;
+                transform.position = Vector2.Lerp(initialPosition, finalPosition, currentTime/dashTime);
+                yield return null;
+            }
+            transform.position = finalPosition;
+
+            playerRigidbody2D.gravityScale = 1.0f;
+
+            inDash = false;
         }
-        transform.position = finalPosition;
-
-        playerRigidbody2D.gravityScale = 1.0f;
-
-        inDash = false;
     }
 
 }
