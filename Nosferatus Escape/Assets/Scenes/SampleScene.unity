@@ -296,6 +296,7 @@ MonoBehaviour:
   dashTime: 0.25
   dashDistance: 3
   direction: {x: 0, y: 0}
+  xRange: 6.5
 --- !u!4 &218187688
 Transform:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public float dashTime;
     public float dashDistance;
     public Vector2 direction;
+    public float xRange;
 
     private Rigidbody2D playerRigidbody2D;
  
@@ -27,8 +28,8 @@ public class Player : MonoBehaviour
     {
         if(!inDash)
         {
-            if(Input.GetKey(KeyCode.A)) MoveSideBySide(-1);
-            if(Input.GetKey(KeyCode.D)) MoveSideBySide( 1);
+            if(Input.GetKey(KeyCode.A) && transform.position.x > -xRange) MoveSideBySide(-1);
+            if(Input.GetKey(KeyCode.D) && transform.position.x <  xRange) MoveSideBySide( 1);
 
             if(Input.GetKeyDown(KeyCode.Space)) Jump();
         }
@@ -59,6 +60,9 @@ public class Player : MonoBehaviour
 
             Vector2 initialPosition = transform.position;
             Vector2 finalPosition = initialPosition + (dashDistance*direction);
+
+            if (finalPosition.x >  xRange) finalPosition.x =  xRange;
+            if (finalPosition.x < -xRange) finalPosition.x = -xRange;
 
             float currentTime = 0.0f;
             while(currentTime<dashTime)
