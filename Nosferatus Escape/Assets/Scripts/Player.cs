@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
     public float speed;
     public float forceJump;
     public bool inDash;
+    public bool inGround;
     public float dashTime;
     public float dashDistance;
     public Vector2 direction;
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour
     {
         playerRigidbody2D = GetComponent<Rigidbody2D>();
         direction = Vector2.right;
+        inGround = false;
     }
 
     void Update()
@@ -31,7 +33,7 @@ public class Player : MonoBehaviour
             if(Input.GetKey(KeyCode.A) && transform.position.x > -xRange) MoveSideBySide(-1);
             if(Input.GetKey(KeyCode.D) && transform.position.x <  xRange) MoveSideBySide( 1);
 
-            if(Input.GetKeyDown(KeyCode.Space)) Jump();
+            if(Input.GetKeyDown(KeyCode.Space) && inGround) Jump();
         }
 
         if(Input.GetKeyDown(KeyCode.J)) StartCoroutine(DashCoroutine());
