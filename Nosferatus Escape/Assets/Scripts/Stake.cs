@@ -18,7 +18,7 @@ public class Stake : MonoBehaviour
     private IEnumerator Fall()
     {
         yield return new WaitForSeconds(timeToFall);
-        stakeRigidBody2D.gravityScale = Random.Range(0.2f, 5.0f);
+        stakeRigidBody2D.gravityScale = Random.Range(0.1f, 1.0f);
     }
 
     void OnCollisionEnter2D(Collision2D col)

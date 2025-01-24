@@ -9,14 +9,17 @@ public class Player : MonoBehaviour
     public bool inGround;
     public float dashTime;
     public float dashDistance;
+    public int dashDirection;
     public Vector2 direction;
     public float xRange;
 
     private Rigidbody2D playerRigidbody2D;
+    private SpriteRenderer playerSpriteRenderer;
  
     void Start()
     {
         playerRigidbody2D = GetComponent<Rigidbody2D>();
+        playerSpriteRenderer = GetComponent<SpriteRenderer>();
         direction = Vector2.right;
         inGround = false;
     }
@@ -43,6 +46,8 @@ public class Player : MonoBehaviour
     {
         transform.position += Time.deltaTime * _direction * speed * Vector3.right;
         direction = _direction > 0 ? Vector2.right : Vector2.left;
+        playerSpriteRenderer.flipX = _direction != 1;
+        dashDirection = _direction;
     }
 
     private void Jump()
@@ -61,7 +66,7 @@ public class Player : MonoBehaviour
             playerRigidbody2D.velocity = Vector2.zero;
 
             Vector2 initialPosition = transform.position;
-            Vector2 finalPosition = initialPosition + (dashDistance*direction);
+            Vector2 finalPosition = initialPosition + new Vector2(dashDistance*dashDirection, 0);
 
             if (finalPosition.x >  xRange) finalPosition.x =  xRange;
             if (finalPosition.x < -xRange) finalPosition.x = -xRange;
