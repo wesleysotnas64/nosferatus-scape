@@ -9,17 +9,16 @@ public class Stake : MonoBehaviour
     void Start()
     {
         stakeRigidBody2D = GetComponent<Rigidbody2D>();
-
         stakeRigidBody2D.gravityScale = 0;
-        timeToFall = Random.Range(1.0f, 3.0f);
+        timeToFall = Random.Range(0.25f, 3.0f);
 
-        StartCoroutine(InitCoroutine());
+        StartCoroutine(Fall());
     }
 
-    private IEnumerator InitCoroutine()
+    private IEnumerator Fall()
     {
         yield return new WaitForSeconds(timeToFall);
-        stakeRigidBody2D.gravityScale = Random.Range(0.25f, 3.0f);
+        stakeRigidBody2D.gravityScale = Random.Range(0.2f, 5.0f);
     }
 
     void OnCollisionEnter2D(Collision2D col)

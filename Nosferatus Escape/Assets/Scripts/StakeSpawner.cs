@@ -7,7 +7,7 @@ public class StakeSpawner : MonoBehaviour
     public float currentTime;
     [Range(0, 1)]
     public float probabilitySpawn;
-    public float spawAreaRange;
+    public int spawAreaRange;
 
     void Update()
     {
@@ -23,7 +23,7 @@ public class StakeSpawner : MonoBehaviour
     {
         if(Random.Range(0.0f, 1.0f) <= probabilitySpawn)
         {
-            float xPosition = Random.Range(-spawAreaRange, spawAreaRange);
+            float xPosition = Random.Range(-spawAreaRange, spawAreaRange+1);
             GameObject stakeGameObject = Instantiate(stake);
             stakeGameObject.transform.position = new Vector3(xPosition, transform.position.y, 0);
         }
