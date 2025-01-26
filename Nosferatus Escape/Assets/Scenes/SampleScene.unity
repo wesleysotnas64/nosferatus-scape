@@ -216,6 +216,7 @@ GameObject:
   m_Component:
   - component: {fileID: 218187688}
   - component: {fileID: 218187687}
+  - component: {fileID: 218187692}
   - component: {fileID: 218187686}
   - component: {fileID: 218187690}
   - component: {fileID: 218187689}
@@ -297,6 +298,7 @@ MonoBehaviour:
   inGround: 0
   dashTime: 0.25
   dashDistance: 0.5
+  dashDirection: 0
   direction: {x: 0, y: 0}
   xRange: 0.9
 --- !u!4 &218187688
@@ -408,6 +410,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &218187692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218187685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35c30261c3b4cef49a7e60c76dd748cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,6 +721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4f12119b5cff024d8dd167e781a08a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
 --- !u!1 &1598649842
 GameObject:
   m_ObjectHideFlags: 0

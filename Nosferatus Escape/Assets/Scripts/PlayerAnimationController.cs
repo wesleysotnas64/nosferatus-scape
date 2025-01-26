@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviour
@@ -21,28 +20,35 @@ public class PlayerAnimationController : MonoBehaviour
     
     void Update()
     {
-        run = false;
-        if(Input.GetKey(KeyCode.A) && transform.position.x > -player.xRange) run = true;
-        if(Input.GetKey(KeyCode.D) && transform.position.x <  player.xRange) run = true;
         SetAnimationParameters();
         AnimationsControll();
     }
 
     private void SetAnimationParameters()
     {
+        run = false;
+        if(Input.GetKey(KeyCode.A) && transform.position.x > -player.xRange) run = true;
+        if(Input.GetKey(KeyCode.D) && transform.position.x <  player.xRange) run = true;
         idle = !run;
-        // jump = sensor.active == false;
-        // if (jump)
-        // {
-        //     idle = false;
-        //     run = false;
-        // }
+
+        jump = sensor.active == false;
+        if (jump)
+        {
+            idle = false;
+            run = false;
+        }
+
+        dash = player.inDash;
+        if(dash)
+        {
+            idle = false;
+            run = false;
+            jump = false;
+        }
     }
 
     private void AnimationsControll()
     {
-
-
         animator.SetBool("idle", idle);
         animator.SetBool("run", run);
         animator.SetBool("jump", jump);

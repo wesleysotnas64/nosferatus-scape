@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
         direction = Vector2.right;
         inGround = false;
+        dashDirection = 1;
     }
 
     void Update()
