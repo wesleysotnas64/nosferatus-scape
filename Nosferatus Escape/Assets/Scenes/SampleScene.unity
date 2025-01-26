@@ -294,13 +294,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.5
   forceJump: 100
+  dashRecoverTime: 2
+  dashDistance: 0.5
+  xRange: 0.9
   inDash: 0
   enabledDash: 0
   inGround: 0
   dashTime: 0.25
-  dashRecoverTime: 2
-  dashDistance: 0.5
-  xRange: 0.9
   dashDirection: 0
   direction: {x: 0, y: 0}
 --- !u!4 &218187688
@@ -312,7 +312,7 @@ Transform:
   m_GameObject: {fileID: 218187685}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.1487, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
