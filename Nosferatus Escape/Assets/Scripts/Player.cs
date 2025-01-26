@@ -5,13 +5,15 @@ public class Player : MonoBehaviour
 {
     public float speed;
     public float forceJump;
+    public float dashRecoverTime;
+    public float dashDistance;
+    public float xRange;
     public bool inDash;
+    public bool enabledDash;
     public bool inGround;
     public float dashTime;
-    public float dashDistance;
     public int dashDirection;
     public Vector2 direction;
-    public float xRange;
 
     private Rigidbody2D playerRigidbody2D;
     private SpriteRenderer playerSpriteRenderer;
@@ -22,6 +24,7 @@ public class Player : MonoBehaviour
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
         direction = Vector2.right;
         inGround = false;
+        enabledDash = true;
         dashDirection = 1;
     }
 
@@ -40,7 +43,7 @@ public class Player : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Space) && inGround) Jump();
         }
 
-        if(Input.GetKeyDown(KeyCode.J)) StartCoroutine(DashCoroutine());
+        if(Input.GetKeyDown(KeyCode.J) && enabledDash) StartCoroutine(DashCoroutine());
     }
 
     private void MoveSideBySide(int _direction)
@@ -62,6 +65,7 @@ public class Player : MonoBehaviour
         if(!inDash)
         {
             inDash = true;
+            enabledDash = false;
 
             playerRigidbody2D.gravityScale = 0;
             playerRigidbody2D.velocity = Vector2.zero;
@@ -84,7 +88,28 @@ public class Player : MonoBehaviour
             playerRigidbody2D.gravityScale = 1.0f;
 
             inDash = false;
+
+            StartCoroutine(DashRecoverCoroutine());
         }
+    }
+
+    private IEnumerator DashRecoverCoroutine()
+    {
+        float h = 275.0f/360.0f;
+        float s = 50.0f/100.0f;
+        float v = 100.0f/100.0f;
+        playerSpriteRenderer.color = Color.HSVToRGB(h, s, v);
+
+        enabledDash = false;
+        float currentTime = 0.0f;
+        while(currentTime < dashRecoverTime)
+        {
+            currentTime += Time.deltaTime;
+            yield return null;
+        }
+        enabledDash = true;
+
+        playerSpriteRenderer.color = Color.white;
     }
 
 }
