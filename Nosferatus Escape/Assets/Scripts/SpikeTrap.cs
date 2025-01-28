@@ -15,7 +15,7 @@ public class SpikeTrap : MonoBehaviour
         if (isRandom)
         {
             timeToActive = Random.Range(1.0f, 5.0f);
-            activeTime = Random.Range(1.0f, 5.0f);
+            activeTime = Random.Range(1.0f, 2.0f);
 
             StartCoroutine(ActiveSpikeCoroutine());
         }
