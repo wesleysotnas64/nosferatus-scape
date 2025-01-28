@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     public float speed;
     public float forceJump;
@@ -111,5 +111,4 @@ public class Player : MonoBehaviour
 
         playerSpriteRenderer.color = Color.white;
     }
-
 }

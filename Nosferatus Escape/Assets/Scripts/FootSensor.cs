@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class FootSensor : MonoBehaviour
 {
-    private Player player;
+    private PlayerMovement player;
     public bool active;
     // Start is called before the first frame update
     void Start()
     {
-        player = transform.parent.GetComponent<Player>();
+        player = transform.parent.GetComponent<PlayerMovement>();
     }
 
     void OnTriggerEnter2D(Collider2D other)

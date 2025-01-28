@@ -9,12 +9,12 @@ public class PlayerAnimationController : MonoBehaviour
     private bool dash;
     private Animator animator;
     private FootSensor sensor;
-    private Player player;
+    private PlayerMovement player;
     void Start()
     {
         animator = GetComponent<Animator>();
         sensor = transform.GetChild(0).GetComponent<FootSensor>();
-        player = GetComponent<Player>();
+        player = GetComponent<PlayerMovement>();
     }
 
     
