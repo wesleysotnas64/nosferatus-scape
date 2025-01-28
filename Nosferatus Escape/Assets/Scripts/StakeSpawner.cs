@@ -12,7 +12,7 @@ public class StakeSpawner : MonoBehaviour
 
     void Start()
     {
-        active = false;
+        // active = false;
     }
 
     void Update()

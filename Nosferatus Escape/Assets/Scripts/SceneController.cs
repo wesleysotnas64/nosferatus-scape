@@ -8,12 +8,17 @@ public class SceneController : MonoBehaviour
     public float currentTime;
     public float nextLevelTime;
 
+    private StakeSpawner stakeSpawner;
+
     void Start()
     {
         maxLevel = 5;
         currentLevel = 1;
         pointTime = 0;
         currentTime = 0;
+
+        stakeSpawner = GameObject.Find("StakeSpawner").GetComponent<StakeSpawner>();
+        stakeSpawner.active = true;
     }
 
     void Update()
@@ -31,7 +36,37 @@ public class SceneController : MonoBehaviour
             {
                 currentTime = 0;
                 currentLevel++;
+                SetLevel(currentLevel);
             }
+        }
+    }
+
+    private void SetLevel(int level)
+    {
+        switch(level)
+        {
+            case 1:
+                stakeSpawner.spawnTime = 2.0f;
+                break;
+
+            case 2:
+                stakeSpawner.spawnTime = 1.5f;
+                break;
+
+            case 3:
+                stakeSpawner.spawnTime = 1.0f;
+                break;
+
+            case 4:
+                stakeSpawner.spawnTime = 0.75f;
+                break;
+
+            case 5:
+                stakeSpawner.spawnTime = 0.25f;
+                break;
+
+            default:
+                break;
         }
     }
 }
