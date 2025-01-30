@@ -12,13 +12,31 @@ public class FootSensor : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        player.inGround = true;
-        active = true;
+        string tag = other.gameObject.tag;
+        switch (tag)
+        {
+            case "Ground":
+                player.inGround = true;
+                active = true;
+                break;
+
+            default:
+                break;
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        player.inGround = false;
-        active = false;
+        string tag = other.gameObject.tag;
+        switch (tag)
+        {
+            case "Ground":
+                player.inGround = false;
+                active = false;
+                break;
+
+            default:
+                break;
+        }
     }
 }
