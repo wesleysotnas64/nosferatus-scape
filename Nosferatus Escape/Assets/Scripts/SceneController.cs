@@ -9,6 +9,8 @@ public class SceneController : MonoBehaviour
     public float nextLevelTime;
 
     private StakeSpawner stakeSpawner;
+    private SpikeTrapSpawner spikeTrapSpawner;
+
 
     void Start()
     {
@@ -18,7 +20,10 @@ public class SceneController : MonoBehaviour
         currentTime = 0;
 
         stakeSpawner = GameObject.Find("StakeSpawner").GetComponent<StakeSpawner>();
+        spikeTrapSpawner = GameObject.Find("SpikeTrapSpawner").GetComponent<SpikeTrapSpawner>();
+
         stakeSpawner.active = true;
+        spikeTrapSpawner.active = false;
     }
 
     void Update()
