@@ -11,7 +11,6 @@ public class SceneController : MonoBehaviour
     private StakeSpawner stakeSpawner;
     private SpikeTrapSpawner spikeTrapSpawner;
 
-
     void Start()
     {
         maxLevel = 5;
@@ -51,15 +50,18 @@ public class SceneController : MonoBehaviour
         switch(level)
         {
             case 1:
-                stakeSpawner.spawnTime = 2.0f;
+                stakeSpawner.spawnTime = 3.0f;
                 break;
 
             case 2:
                 stakeSpawner.spawnTime = 1.5f;
+                spikeTrapSpawner.active = true;
+                spikeTrapSpawner.spawnTime = 5.0f;
                 break;
 
             case 3:
                 stakeSpawner.spawnTime = 1.0f;
+                spikeTrapSpawner.spawnTime = 2.5f;
                 break;
 
             case 4:
@@ -67,7 +69,7 @@ public class SceneController : MonoBehaviour
                 break;
 
             case 5:
-                stakeSpawner.spawnTime = 0.25f;
+                stakeSpawner.spawnTime = 0.5f;
                 break;
 
             default:

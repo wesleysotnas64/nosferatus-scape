@@ -235,9 +235,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50fef6b13e6287f419e0f7e3c3118eb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   spikeTrap: {fileID: 5511097266229986240, guid: b72b4410b67b3a04cab6bfa066d25163, type: 3}
-  spawnTime: 5
+  spawnTime: 1
   currentTime: 0
   probabilitySpawn: 1
   spawAreaRange: 0.8
@@ -640,11 +640,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b738a7794228f3c41bd601b048475d43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLevel: 0
-  currentLevel: 0
+  maxLevel: 2
+  currentLevel: 1
   pointTime: 0
   currentTime: 0
-  nextLevelTime: 25
+  nextLevelTime: 15
 --- !u!4 &574594257
 Transform:
   m_ObjectHideFlags: 0
@@ -1037,9 +1037,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 619394802}
+  - {fileID: 574594257}
   - {fileID: 76064484}
   - {fileID: 1598649844}
   - {fileID: 218187688}
   - {fileID: 2107096673}
-  - {fileID: 574594257}
   - {fileID: 142339364}

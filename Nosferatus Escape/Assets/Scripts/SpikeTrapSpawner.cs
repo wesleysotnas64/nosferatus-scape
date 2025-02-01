@@ -15,19 +15,19 @@ public class SpikeTrapSpawner : MonoBehaviour
 
     void Start()
     {
-        // active = false;
+        active = false;
     }
 
     void Update()
     {
         if (!active) return; //Impede de executar as demais funções se não tiver ativo
         
-        // currentTime += Time.deltaTime;
-        // if (currentTime > spawnTime)
-        // {
-        //     currentTime = 0;
-        //     InstantitateSpikeTrap();
-        // }
+        currentTime += Time.deltaTime;
+        if (currentTime > spawnTime)
+        {
+            currentTime = 0;
+            InstantiateRandomSpikeTrap();
+        }
 
         if (Input.GetKeyDown(KeyCode.P)) StartCoroutine(InstantiateLeftToRightSpikesCoroutine(0.5f));
         if (Input.GetKeyDown(KeyCode.O)) StartCoroutine(InstantiateRightToLeftSpikesCoroutine(0.5f));

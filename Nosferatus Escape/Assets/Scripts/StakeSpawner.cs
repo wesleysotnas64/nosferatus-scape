@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class StakeSpawner : MonoBehaviour
@@ -31,9 +32,14 @@ public class StakeSpawner : MonoBehaviour
     {
         if(Random.Range(0.0f, 1.0f) <= probabilitySpawn)
         {
-            float xPosition = Random.Range(-spawAreaRange, spawAreaRange);
+            List<float> xPosition = new()
+            {
+              -0.8f, -0.7f, -0.6f, -0.5f, -0.4f, -0.3f, -0.2f, -0.1f, 0.0f,
+               0.1f,  0.2f,  0.3f,  0.4f,  0.5f,  0.6f,  0.7f,  0.8f
+            };
+            int i = Random.Range(0, xPosition.Count);
             GameObject stakeGameObject = Instantiate(stake);
-            stakeGameObject.transform.position = new Vector3(xPosition, transform.position.y, 0);
+            stakeGameObject.transform.position = new Vector3(xPosition[i], transform.position.y, 0);
         }
     }
 }
