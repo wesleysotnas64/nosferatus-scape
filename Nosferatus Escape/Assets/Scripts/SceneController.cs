@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class SceneController : MonoBehaviour
@@ -10,6 +11,9 @@ public class SceneController : MonoBehaviour
 
     private StakeSpawner stakeSpawner;
     private SpikeTrapSpawner spikeTrapSpawner;
+
+    public TMP_Text textLevel;
+    public TMP_Text textTimePoint;
 
     void Start()
     {
@@ -28,6 +32,13 @@ public class SceneController : MonoBehaviour
     void Update()
     {
         UpdateTimeAndPoints();
+        UpdateCanvas();
+    }
+
+    private void UpdateCanvas()
+    {
+        textLevel.text = $"Level: {currentLevel}";
+        textTimePoint.text = $"Time: {pointTime:F2}";
     }
 
     private void UpdateTimeAndPoints()
