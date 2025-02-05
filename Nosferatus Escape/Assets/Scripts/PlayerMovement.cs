@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float dashRecoverTime;
     public float dashDistance;
     public float xRange;
+    public bool isActiveMovement;
     public bool inDash;
     public bool enabledDash;
     public bool inGround;
@@ -22,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
     {
         playerRigidbody2D = GetComponent<Rigidbody2D>();
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
+
+        isActiveMovement = false;
         direction = Vector2.right;
         inGround = false;
         enabledDash = true;
@@ -30,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if(!isActiveMovement) return;
         PlayerControll();
     }
 
@@ -108,6 +112,20 @@ public class PlayerMovement : MonoBehaviour
             yield return null;
         }
         enabledDash = true;
+
+        playerSpriteRenderer.color = Color.white;
+    }
+
+    public void Reset()
+    {
+        isActiveMovement = false;
+        inDash = false;
+        enabledDash = true;
+        inGround = false;
+        direction = Vector2.right;
+        dashDirection = 1;
+        
+        playerRigidbody2D.gravityScale = 1.0f;
 
         playerSpriteRenderer.color = Color.white;
     }

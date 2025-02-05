@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class StakeSpawner : MonoBehaviour
 {
-    public bool active;
+    public bool isActive;
     public GameObject stake;
     public float spawnTime;
     public float currentTime;
@@ -13,12 +13,12 @@ public class StakeSpawner : MonoBehaviour
 
     void Start()
     {
-        // active = false;
+        isActive = false;
     }
 
     void Update()
     {
-        if (!active) return; //Impede de executar as demais funções se não tiver ativo
+        if (!isActive) return; //Impede de executar as demais funções se não tiver ativo
         
         currentTime += Time.deltaTime;
         if (currentTime > spawnTime)

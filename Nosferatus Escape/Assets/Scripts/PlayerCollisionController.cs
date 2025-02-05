@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
 
 public class PlayerCollisionController : MonoBehaviour
 {
-    public GameObject tombstone;
+    public SceneController sceneController;
     void OnCollisionEnter2D(Collision2D col)
     {
         string tag = col.gameObject.tag;
@@ -12,8 +11,7 @@ public class PlayerCollisionController : MonoBehaviour
         switch (tag)
         {
             case "Stake":
-                Instantiate(tombstone).transform.position = transform.position;
-                gameObject.SetActive(false);
+                sceneController.GameOver();
                 break;
 
             default:

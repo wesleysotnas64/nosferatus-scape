@@ -26,8 +26,8 @@ public class PlayerAnimationController : MonoBehaviour
     private void SetAnimationParameters()
     {
         run = false;
-        if(Input.GetKey(KeyCode.A) && transform.position.x > -player.xRange) run = true;
-        if(Input.GetKey(KeyCode.D) && transform.position.x <  player.xRange) run = true;
+        if(Input.GetKey(KeyCode.A) && transform.position.x > -player.xRange && player.isActiveMovement) run = true;
+        if(Input.GetKey(KeyCode.D) && transform.position.x <  player.xRange && player.isActiveMovement) run = true;
         idle = !run;
 
         jump = sensor.active == false;

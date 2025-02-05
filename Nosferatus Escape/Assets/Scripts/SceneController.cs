@@ -8,9 +8,14 @@ public class SceneController : MonoBehaviour
     public float pointTime;
     public float currentTime;
     public float nextLevelTime;
+    public bool isActiveGameplay;
 
     private StakeSpawner stakeSpawner;
     private SpikeTrapSpawner spikeTrapSpawner;
+
+    public GameObject player;
+    public GameObject tombstone;
+    public GameObject canvasMenu;
 
     public TMP_Text textLevel;
     public TMP_Text textTimePoint;
@@ -21,17 +26,18 @@ public class SceneController : MonoBehaviour
         currentLevel = 1;
         pointTime = 0;
         currentTime = 0;
+        isActiveGameplay = false;
 
         stakeSpawner = GameObject.Find("StakeSpawner").GetComponent<StakeSpawner>();
         spikeTrapSpawner = GameObject.Find("SpikeTrapSpawner").GetComponent<SpikeTrapSpawner>();
 
-        stakeSpawner.active = true;
+        stakeSpawner.isActive = false;
         spikeTrapSpawner.active = false;
     }
 
     void Update()
     {
-        UpdateTimeAndPoints();
+        if(isActiveGameplay) UpdateTimeAndPoints();
         UpdateCanvas();
     }
 
@@ -66,13 +72,13 @@ public class SceneController : MonoBehaviour
 
             case 2:
                 stakeSpawner.spawnTime = 1.5f;
-                spikeTrapSpawner.active = true;
-                spikeTrapSpawner.spawnTime = 5.0f;
+                // spikeTrapSpawner.active = true;
+                // spikeTrapSpawner.spawnTime = 5.0f;
                 break;
 
             case 3:
                 stakeSpawner.spawnTime = 1.0f;
-                spikeTrapSpawner.spawnTime = 2.5f;
+                // spikeTrapSpawner.spawnTime = 2.5f;
                 break;
 
             case 4:
@@ -86,5 +92,46 @@ public class SceneController : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void InitGameplay()
+    {
+        ResetAttributes();
+
+        isActiveGameplay = true;
+
+        tombstone.SetActive(false);
+
+        player.SetActive(true);
+        player.transform.position = new Vector3(0.0f, 0.0f, 0.0f);
+        player.GetComponent<PlayerMovement>().Reset();
+        player.GetComponent<PlayerMovement>().isActiveMovement = true;
+        
+        canvasMenu.SetActive(false);
+
+        stakeSpawner.isActive = true;
+    }
+
+    public void GameOver()
+    {
+        isActiveGameplay = false;
+
+        canvasMenu.SetActive(true);
+
+        tombstone.SetActive(true);
+        tombstone.transform.position = player.transform.position;
+
+        player.GetComponent<PlayerMovement>().isActiveMovement = false;
+        player.SetActive(false);
+
+        stakeSpawner.isActive = false;
+    }
+
+    private void ResetAttributes()
+    {
+        maxLevel = 5;
+        currentLevel = 1;
+        pointTime = 0;
+        currentTime = 0;
     }
 }
