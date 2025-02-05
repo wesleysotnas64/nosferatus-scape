@@ -5,7 +5,7 @@ public class SceneController : MonoBehaviour
 {
     public int maxLevel;
     public int currentLevel;
-    public float pointTime;
+    public float score;
     public float currentTime;
     public float nextLevelTime;
     public bool isActiveGameplay;
@@ -18,15 +18,18 @@ public class SceneController : MonoBehaviour
     public GameObject canvasMenu;
 
     public TMP_Text textLevel;
-    public TMP_Text textTimePoint;
+    public TMP_Text textScore;
+    public TMP_Text textHighScore;
 
     void Start()
     {
         maxLevel = 5;
         currentLevel = 1;
-        pointTime = 0;
+        score = 0;
         currentTime = 0;
         isActiveGameplay = false;
+
+        textHighScore.text = $"High Score: {PlayerPrefs.GetFloat("HighScore"):F2}";
 
         stakeSpawner = GameObject.Find("StakeSpawner").GetComponent<StakeSpawner>();
         spikeTrapSpawner = GameObject.Find("SpikeTrapSpawner").GetComponent<SpikeTrapSpawner>();
@@ -44,12 +47,12 @@ public class SceneController : MonoBehaviour
     private void UpdateCanvas()
     {
         textLevel.text = $"Level: {currentLevel}";
-        textTimePoint.text = $"Time: {pointTime:F2}";
+        textScore.text = $"Score: {score:F2}";
     }
 
     private void UpdateTimeAndPoints()
     {
-        pointTime += Time.deltaTime;
+        score += Time.deltaTime;
         if(currentLevel < maxLevel)
         {
             currentTime += Time.deltaTime;
@@ -114,6 +117,12 @@ public class SceneController : MonoBehaviour
 
     public void GameOver()
     {
+        if(score > PlayerPrefs.GetFloat("HighScore"))
+        {
+            PlayerPrefs.SetFloat("HighScore", score);
+            textHighScore.text = $"High Score: {PlayerPrefs.GetFloat("HighScore"):F2}";
+        }
+
         isActiveGameplay = false;
 
         canvasMenu.SetActive(true);
@@ -131,7 +140,7 @@ public class SceneController : MonoBehaviour
     {
         maxLevel = 5;
         currentLevel = 1;
-        pointTime = 0;
+        score = 0;
         currentTime = 0;
     }
 }
